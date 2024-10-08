@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<title>Login</title>
+<style>
+    .flat-button {
+        text-decoration: none;
+        background-color: slategray;
+        border: 1px solid aquamarine;
+        color: aquamarine;
+        font-size: 12px;
+        padding: 1px 1px;
+        cursor: pointer;
+    }
+
+    .flat-button:hover {
+        text-decoration: underline;
+    }
+</style>
+<form method="post"> {% csrf_token %}
+{% for field in login_form %}
+    <p> 
+        {{field.label_tag}}
+        {{field}}
+
+        {% if field.help_text %}
+            <small style="color: grey;">{{field.help_text}}</small>
+        {% endif %}
+    </p>
+    {% endfor %}
+
+    {% for field in login_form %}
+        {% for error in field.errors %}
+        <p style="color: red;">{{error}}</p>
+        {% endfor %}
+    {% endfor %}
+        <!-- LOL^^^^ -->
+    {% if login_form.non_field_errors %}
+        <div style="color: red;">
+            <p>{{login_form.non_field_errors}}</p>
+        </div>
+    {% endif %}
+    <button class="flat-button" type="submit">Login</button>
+</form>
+<div> 
+
+<a class="flat-button" href="{% url 'password_reset' %}">Reset Password</a>
+
+</div>
+{% endblock content %}

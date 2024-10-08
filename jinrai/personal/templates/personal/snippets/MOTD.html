@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<title>Jinrai</title>
+<div style="border: 2px solid #FFF;">
+
+{% for account in accounts %}
+    <div class="text-container">
+    <p class="moving-text"> {{account.username}} </p> <p class="moving-text"> {{account.last_login}} </p>
+</div>
+{% endfor %}
+
+</div>
+{% endblock content %}

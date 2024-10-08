@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+        /* Global styles */
+        body {
+            background-color: black;
+            color: green;
+            font-family: "Courier New", monospace;
+            margin: 0 auto; /* Horizontally center the content */
+            width: 50%; /* Width required for centering */
+        }
+
+        /* Navigation menu */
+        nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 1em;
+            background-color: #1a1a1a;
+        }
+
+        nav a {
+            color: green;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+                /* Styles for the specific moving text */
+        .moving-text {
+            font-weight: bold;
+            font-size: 1em;
+            color: green;
+            white-space: nowrap; /* Prevent text from wrapping */
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+            animation: moveText 5s linear infinite; /* Apply animation */
+        }
+
+        /* Keyframes for moving text */
+        @keyframes moveText {
+            0% {
+                transform: translateX(100%); /* Start off the screen from the right */
+            }
+            100% {
+                transform: translateX(-100%); /* Move out to the left */
+            }
+        }
+
+        /* Container to prevent overflow and keep text on one line */
+        .text-container {
+            width: 100%;
+            overflow: hidden;
+            border: 1px solid green;
+            padding: .01px;
+            margin: 0 auto; /* Horizontally center the content */
+            width: 70%; /* Width required for centering */
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <h1 style="text-align: center;">---BlockContent---</h1>
+
+        {% block content %}
+
+        {% endblock content %}
+
+        <p style="text-align: center;">^^^^blockcontent^^^^</p>
+    </div>
+<footer class="d-flex d-none">
+            {% if request.user.is_authenticated %}
+            <p style="text-align: center;">
+                <span style="color: green;">Logged in as: </span>
+                <span style="color: gold;"> {{ request.user.username }}</span>
+            </p>
+            {% else %}
+            {% endif %}
+</footer>
+
+</body>
+</html>
